@@ -1,0 +1,261 @@
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <link rel="stylesheet" href="/pages/style.css">
+    <script src="../js/sweetalert2.js"></script>
+    <script src="/js/studentMain.js"></script>
+    <script src="/js/mentorMain.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="/images/android-icon-192x192.png" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <title> Sign Up | Zyper </title>
+</head>
+
+<body style="background: #CEE5D0;">
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="/images/Online learning-bro.png" style="width: 150px; margin-left: -15px;">
+                <h3>Welcome</h3>
+                <p>You are seconds away from becoming a part of the Zyper family!</p>
+                <a href="/pages/SignIn.html" class="idkwhatthisis" style="border: solid;
+                border-color: black;
+                border-width: thick;
+                background-color: #0F52BA;
+                padding: 3px 30px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 22px;
+                color: white;
+                border-radius: 12px;
+                font-family: monospace;
+                margin-right: 15px;"> Sign In</a>
+                <br>
+            </div>
+            <div class="col-md-9 register-right" style="margin-bottom: 25px;">
+                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true">Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile" aria-selected="false">Mentor</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Sign Up As A Student</h3>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Full Name *" value=""
+                                        id="userFullName" onblur="checkUserFullName()">
+                                    <h4 id="userFullNameError" style="color: red;"></h4>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email *" value=""
+                                        id="userEmail" onblur="checkUserEmail()">
+                                    <h4 id="userEmailError" style="color: red;"></h4>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password *" value=""
+                                        id="userPassword" onblur="checkUserPassword()">
+                                    <h4 id="userPasswordError" style="color: red;"></h4>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: -9px;">
+                                <h8> <b> Select Your Skills (please choose three): </b> </h8>
+                                <br>
+                                <form method="post" name="form_name" id="form_name">
+                                    <tr>
+                                        <td> <input type="checkbox" id="check1" name="check[]" class="pl"
+                                                value="3-D Modeling" onclick="checkBoxLimit()"> 3-D
+                                            Modeling </td>
+                                        <br>
+                                        <td> <input type="checkbox" id="check2" name="check[]" class="pl"
+                                                value="Stock Market Investments" onclick="checkBoxLimit()">
+                                            Stock Market Investments </td>
+                                    </tr>
+                                    <br>
+                                    <tr>
+                                        <td> <input type="checkbox" id="check3" name="check[]" class="pl"
+                                                value="Mathematics" onclick="checkBoxLimit()">
+                                            Mathematics
+                                        </td>
+                                        <br>
+                                        <td> <input type="checkbox" id="check4" name="check[]" class="pl"
+                                                value="Physics" onclick="checkBoxLimit()">
+                                            Physics </td>
+                                    </tr>
+                                    <br>
+                                    <tr>
+                                        <td> <input type="checkbox" id="check5" name="check[]" class="pl"
+                                                value="Programming" onclick="checkBoxLimit()">
+                                            Programming
+                                        </td>
+                                        <br>
+                                        <td> <input type="checkbox" id="check6" name="check[]" class="pl"
+                                                value="Space Tech" onclick="checkBoxLimit()">
+                                            Space Tech
+                                        </td>
+                                    </tr>
+                                    <br>
+                                    <tr>
+                                        <td> <input type="checkbox" id="check7" name="check[]" class="pl"
+                                                value="Robotics" onclick="checkBoxLimit()">
+                                            Robotics
+                                        </td>
+                                        <br>
+                                        <td> <input type="checkbox" id="check8" name="check[]" class="pl"
+                                                value="App Development" onclick="checkBoxLimit()">
+                                            App
+                                            Development
+                                        </td>
+                                    </tr>
+                                </form>
+                                <script type="text/javascript">
+                                    checkBoxLimit()
+                                </script>
+                            </div>
+                            <input id="studentSignUp" style="margin-left: 150px;" type="submit" class="btnRegister"
+                                value="Sign Up" onclick="signUp()">
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <h3 class="register-heading">Sign Up As A Mentor</h3>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Full Name *" value=""
+                                        id="mentorFullName" onblur="checkMentorFullName()">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email *" value=""
+                                        id="mentorEmail" onblur="checkMentorEmail()">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password *" value=""
+                                        id="mentorPassword" onblur="checkMentorPassword()">
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: -9px;">
+                                <h8> <b> Select Your Skills (please choose three): </b> </h8>
+                                <br>
+                                <form method="post" name="form_names" id="form_names">
+                                    <tr>
+                                        <td> <input type="checkbox" id="Mcheck1" name="checking[]" class="pl"
+                                                value="3-D Modeling" onclick="checkBoxLimited()"> 3-D
+                                            Modeling </td>
+                                        <br>
+                                        <td> <input type="checkbox" id="Mcheck2" name="checking[]" class="pl"
+                                                value="Stock Market Investments" onclick="checkBoxLimited()">
+                                            Stock Market Investments </td>
+                                    </tr>
+                                    <br>
+                                    <tr>
+                                        <td> <input type="checkbox" id="Mcheck3" name="checking[]" class="pl"
+                                                value="Mathematics" onclick="checkBoxLimited()">
+                                            Mathematics
+                                        </td>
+                                        <br>
+                                        <td> <input type="checkbox" id="Mcheck4" name="checking[]" class="pl"
+                                                value="Physics" onclick="checkBoxLimited()">
+                                            Physics </td>
+                                    </tr>
+                                    <br>
+                                    <tr>
+                                        <td> <input type="checkbox" id="Mcheck5" name="checking[]" class="pl"
+                                                value="Programming" onclick="checkBoxLimited()">
+                                            Programming
+                                        </td>
+                                        <br>
+                                        <td> <input type="checkbox" id="Mcheck6" name="checking[]" class="pl"
+                                                value="Space Tech" onclick="checkBoxLimited()">
+                                            Space Tech
+                                        </td>
+                                    </tr>
+                                    <br>
+                                    <tr>
+                                        <td> <input type="checkbox" id="Mcheck7" name="checking[]" class="pl"
+                                                value="Robotics" onclick="checkBoxLimited()">
+                                            Robotics
+                                        </td>
+                                        <br>
+                                        <td> <input type="checkbox" id="Mcheck8" name="checking[]" class="pl"
+                                                value="App Development" onclick="checkBoxLimited()">
+                                            App
+                                            Development
+                                        </td>
+                                    </tr>
+                                </form>
+                                <script type="text/javascript">
+                                    checkBoxLimited()
+                                </script>
+                            </div>
+                            <input style="margin-left: 150px;" id="mentorSignUp" type="submit" class="btnRegister"
+                                value="Sign Up" onclick="MentorSignUp()">
+                            <!-- <button onclick="chkBoxSubmit()">click</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+        <script>
+            // Your web app's Firebase configuration
+            // const firebaseConfig = {
+            //     apiKey: "AIzaSyCyq4UlvzCsDWNgMligsXl9eChjYOyWNL4",
+            //     authDomain: "zyper-d5eb9.firebaseapp.com",
+            //     databaseURL: "https://zyper-d5eb9-default-rtdb.firebaseio.com",
+            //     projectId: "zyper-d5eb9",
+            //     storageBucket: "zyper-d5eb9.appspot.com",
+            //     messagingSenderId: "269373016385",
+            //     appId: "1:269373016385:web:2cf7d2699e6ed1845fb9c0",
+            //     measurementId: "G-V8ZW7WG8SV"
+            // };
+            // // Initialize Firebase
+            // firebase.initializeApp(firebaseConfig);
+            // const auth = firebase.auth();
+            // //const db = firebase.firestore();
+            // console.log(firebase.auth());
+            const firebaseConfig = {
+                apiKey: "AIzaSyCyq4UlvzCsDWNgMligsXl9eChjYOyWNL4",
+                authDomain: "zyper-d5eb9.firebaseapp.com",
+                databaseURL: "https://zyper-d5eb9-default-rtdb.firebaseio.com",
+                projectId: "zyper-d5eb9",
+                storageBucket: "zyper-d5eb9.appspot.com",
+                messagingSenderId: "269373016385",
+                appId: "1:269373016385:web:2cf7d2699e6ed1845fb9c0",
+                measurementId: "G-V8ZW7WG8SV"
+            };
+
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
+        </script>
+
+</body>
+
+</html>

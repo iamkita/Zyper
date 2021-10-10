@@ -1,0 +1,278 @@
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <link rel="stylesheet" href="/pages/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="assets/css/style.css" rel="stylesheet">
+    <script src="../js/sweetalert2.js"></script>
+    <link href="/images/android-icon-192x192.png" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <title> Sign In | Zyper </title>
+</head>
+
+<body style="background: #CEE5D0;">
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="/images/Online learning-bro.png" style="width: 150px; margin-left: -15px;">
+                <h3>Welcome Back!</h3>
+                <p>Log In To Your Zyper Account</p>
+                <a href="/pages/SignUp.html" class="idkwhatthisis" style="border: solid;
+                border-color: black;
+                border-width: thick;
+                background-color: #0F52BA;
+                padding: 3px 30px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 22px;
+                color: white;
+                border-radius: 12px;
+                font-family: monospace;
+                margin-right: 15px;"> Sign Up</a>
+                <br>
+            </div>
+            <div class="col-md-9 register-right" style="margin-bottom: 25px;">
+                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true">Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile" aria-selected="false">Mentor</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Sign In As A Student</h3>
+                        <br>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email *" value=""
+                                        id="StudentSIemail" onblur="checkUserSIEmail()">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password *" value=""
+                                        id="StudentSIpassword" onblur="checkUserSIPassword()">
+                                </div>
+                            </div>
+                            <img src="/images/Circles-cuate.png"
+                                style="height: 230px; margin-left: 90px; margin-top: -50px;">
+                            <input id="studentSignIn" style="margin-left: 150px;" type="submit" class="btnRegister"
+                                value="Sign In" onclick="StudentSignIn()">
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <h3 class="register-heading">Sign In As A Mentor</h3>
+                        <br>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email *" value=""
+                                        id="MentorSIemail" onblur="checkMentorEmail()">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password *" value=""
+                                        id="MentorSIpassword" onblur="checkMentorPassword()">
+                                </div>
+                            </div>
+                            <img src="/images/Circles-cuate.png"
+                                style="height: 230px; margin-left: 90px; margin-top: -50px;">
+                        </div>
+                        <br> <br>
+                        <input style="margin-top: -50px; margin-right: 200px;" id="mentorSignIn" type="submit"
+                            class="btnRegister" value="Sign In" onclick="MentorSignIn()">
+                        <br> <br> <br> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCyq4UlvzCsDWNgMligsXl9eChjYOyWNL4",
+            authDomain: "zyper-d5eb9.firebaseapp.com",
+            databaseURL: "https://zyper-d5eb9-default-rtdb.firebaseio.com",
+            projectId: "zyper-d5eb9",
+            storageBucket: "zyper-d5eb9.appspot.com",
+            messagingSenderId: "269373016385",
+            appId: "1:269373016385:web:2cf7d2699e6ed1845fb9c0",
+            measurementId: "G-V8ZW7WG8SV"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // xxxxxxxxxx Student Sign In Email Validation xxxxxxxxxx
+        function checkUserSIEmail() {
+            var userSIEmail = document.getElementById("StudentSIemail");
+            var userSIEmailFormate =
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var flag;
+            if (userSIEmail.value.match(userSIEmailFormate)) {
+                flag = false;
+            } else {
+                flag = true;
+            }
+            if (flag) {
+                document.getElementById("userSIEmailError").style.display = "block";
+            } else {
+                document.getElementById("userSIEmailError").style.display = "none";
+            }
+        }
+        // xxxxxxxxxx Student Sign In Password Validation xxxxxxxxxx
+        function checkUserSIPassword() {
+            var userSIPassword = document.getElementById("StudentSIpassword");
+            var userSIPasswordFormate = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}/;
+            var flag;
+            if (userSIPassword.value.match(userSIPasswordFormate)) {
+                flag = false;
+            } else {
+                flag = true;
+            }
+            if (flag) {
+                document.getElementById("userSIPasswordError").style.display = "block";
+            } else {
+                document.getElementById("userSIPasswordError").style.display = "none";
+            }
+        }
+        // xxxxxxxxxx Check email or password exist in firebase authentication xxxxxxxxxx    
+        function StudentSignIn() {
+            var userSIEmail = document.getElementById("StudentSIemail").value;
+            var userSIPassword = document.getElementById("StudentSIpassword").value;
+            var userSIEmailFormate =
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var userSIPasswordFormate = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}/;
+
+            var checkUserEmailValid = userSIEmail.match(userSIEmailFormate);
+            var checkUserPasswordValid = userSIPassword.match(userSIPasswordFormate);
+
+            if (checkUserEmailValid == null) {
+                return checkUserSIEmail();
+            } else if (checkUserPasswordValid == null) {
+                return checkUserSIPassword();
+            } else {
+                auth.signInWithEmailAndPassword(userSIEmail, userSIPassword).then((success) => {
+                    swal({
+                        icon: 'success',
+                        title: 'Succesfully Signed In',
+                    }).then((value) => {
+                        setTimeout(function () {
+                            window.location = "/student_dashboard/examples/dashboard.html";
+                        }, 1000)
+                    });
+                }).catch((error) => {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    swal({
+                        icon: 'error',
+                        title: 'Error',
+                        text: "Account dosen't exist",
+                    })
+                });
+            }
+        }
+
+        // xxxxxxxxxx Mentor Sign In Email Validation xxxxxxxxxx
+        function checkMentorSIEmail() {
+            var userSIEmail = document.getElementById("MentorSIemail");
+            var userSIEmailFormate =
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var flag;
+            if (userSIEmail.value.match(userSIEmailFormate)) {
+                flag = false;
+            } else {
+                flag = true;
+            }
+            if (flag) {
+                document.getElementById("userSIEmailError").style.display = "block";
+            } else {
+                document.getElementById("userSIEmailError").style.display = "none";
+            }
+        }
+        // xxxxxxxxxx Mentor Sign In Password Validation xxxxxxxxxx
+        function checkMentorSIPassword() {
+            var userSIPassword = document.getElementById("MentorSIpassword");
+            var userSIPasswordFormate = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}/;
+            var flag;
+            if (userSIPassword.value.match(userSIPasswordFormate)) {
+                flag = false;
+            } else {
+                flag = true;
+            }
+            if (flag) {
+                document.getElementById("userSIPasswordError").style.display = "block";
+            } else {
+                document.getElementById("userSIPasswordError").style.display = "none";
+            }
+        }
+        // xxxxxxxxxx Check email or password exist in firebase authentication xxxxxxxxxx    
+        function MentorSignIn() {
+            var mentorSIEmail = document.getElementById("MentorSIemail").value;
+            var mentorSIPassword = document.getElementById("MentorSIpassword").value;
+            var userSIEmailFormate =
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var userSIPasswordFormate = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}/;
+
+            var checkUserEmailValid = mentorSIEmail.match(userSIEmailFormate);
+            var checkUserPasswordValid = mentorSIPassword.match(userSIPasswordFormate);
+
+            if (checkUserEmailValid == null) {
+                return checkMentorSIEmail();
+            } else if (checkUserPasswordValid == null) {
+                return checkMentorSIPassword();
+            } else {
+                auth.signInWithEmailAndPassword(mentorSIEmail, mentorSIPassword).then((success) => {
+                    swal({
+                        icon: 'success',
+                        title: 'Succesfully Signed In',
+                    }).then((value) => {
+                        setTimeout(function () {
+                            window.location = "/mentor_dashboard/examples/dashboard.html";
+                        }, 1000)
+                    });
+                }).catch((error) => {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    swal({
+                        icon: 'error',
+                        title: 'Error',
+                        text: "Account dosen't exist",
+                    })
+                });
+            }
+        }
+    </script>
+
+</body>
+
+</html>

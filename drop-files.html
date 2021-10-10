@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/app.js"></script>
+</head>
+
+<body>
+    <input type="file" name="photo" id="photo">
+    <input type="button" value="Upload" onclick="upload()">
+    <hr />
+    <input type="text" name="name" id="name" alt="Enter Name">
+    <input type="button" value="Get Details" onclick="showDetails()">
+    <img src="" id="someImg" alt="">
+    <h2 id="info"></h2>
+    <table id="myTab">
+    </table>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCyq4UlvzCsDWNgMligsXl9eChjYOyWNL4",
+            authDomain: "zyper-d5eb9.firebaseapp.com",
+            databaseURL: "https://zyper-d5eb9-default-rtdb.firebaseio.com",
+            projectId: "zyper-d5eb9",
+            storageBucket: "zyper-d5eb9.appspot.com",
+            messagingSenderId: "269373016385",
+            appId: "1:269373016385:web:2cf7d2699e6ed1845fb9c0",
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        // Initialize Firebase
+        const db = firebase.firestore();
+        //     console.log(auth);
+        //     auth.createUserWithEmailAndPassword("xyz@gmail.com", "abcdEFGH123#").then((success) => {
+        //     var user = auth.currentUser;
+        //     var uid;
+        //     if (user != null) {
+        //         uid = user.uid;
+        //         alert(uid);
+        //     }
+        // }).catch((error) => {
+        //     // Handle Errors here.
+        //     var errorCode = error.code;
+        //     var errorMessage = error.message;
+        //     alert(errorCode+errorMessage);
+
+
+        // });
+
+        function upload() {
+            const ref = firebase.storage().ref();
+            const file = document.querySelector('#photo').files[0];
+            const name = (+new Date()) + '-' + file.name;
+            const metadata = {
+                contentType: file.type
+            };
+            const task = ref.child("mypics").child(name).put(file, metadata);
+            task
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then((url) => {
+                    //console.log(url);
+                    alert("File uploaded successfully");
+                    document.querySelector('#someImg').src = url;
+                    var brRef = firebase.database().ref("ImageDetails");
+                    brRef.push({
+                        username: uid,
+                        imgURL: url
+                    });
+
+                    firebase.database().ref('ImgInfo/' + 'tomHank' + '/' + new Date()).set({
+                        imgurl: url,
+                        stars: 5
+                    });
+
+                    db.collection("ImageDetails").doc().set({
+                            url: url,
+                            username: uid
+                        })
+                        .then(() => {
+                            alert('Document Created!')
+                            createRequest.reset();
+                        })
+                        .catch((error) => {
+                            console.error("Error writing document: ", error);
+                        });
+                })
+                .catch(console.error);
+        }
+
+        function showDetails() {
+            let nm = document.getElementById('name').value;
+            db.collection('ImageDetails').where('user', '==', nm).get().then(snapshot => {
+                snapshot.docs.forEach(doc => {
+                    console.log(doc.data());
+                    //alert(data().url);
+                    document.getElementById('info').innerHTML =
+                        `${doc.data().user} and ${doc.data().url}`;
+                    let row = `<tr>
+                            <td>${doc.data().user}</td>
+                            <td>${doc.data().url}</td>    
+                            <td><img src=${doc.data().url} width='100px' /></td>    
+
+                      </tr>`;
+                    let table = document.getElementById('myTab');
+                    table.innerHTML += row;
+                })
+            })
+        }
+    </script>
+</body>
+
+</html>

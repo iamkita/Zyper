@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="">SELECT 1 or more Skills</label>
+    <hr>
+    <input type="checkbox" id="skill1" name="skill1" value="Product Design">
+    <label for="skill1"> I want to learn Product Design</label><br>
+    <input type="checkbox" id="skill2" name="skill2" value="Robotics">
+    <label for="skill2"> I want to learn Robotics</label><br>
+    <input type="checkbox" id="skill3" name="skill3" value="Artificial Intelligence">
+    <label for="skill3"> I want to learn Artificial Intelligence</label><br>
+    <hr>
+    <input type="button" value="CHECKBOX SUBMIT" onclick="chkBoxSubmit()">
+
+    <input type="button" value="SUBMIT" onclick="submitData()">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCyq4UlvzCsDWNgMligsXl9eChjYOyWNL4",
+            authDomain: "zyper-d5eb9.firebaseapp.com",
+            databaseURL: "https://zyper-d5eb9-default-rtdb.firebaseio.com",
+            projectId: "zyper-d5eb9",
+            storageBucket: "zyper-d5eb9.appspot.com",
+            messagingSenderId: "269373016385",
+            appId: "1:269373016385:web:2cf7d2699e6ed1845fb9c0",
+            measurementId: "G-V8ZW7WG8SV"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var firebaseRef = firebase.database().ref();
+
+        function submitData() {
+            //NOTE : 111 and 22 are dummy used for 'uid'
+            firebase.database().ref("Skills/" + "111").push({
+                name: "MachineLearning"
+            });
+            firebaseRef.child("Skills").child("111").push({
+                name: "AI"
+            });
+
+
+            firebase.database().ref("Skills/" + "222").push({
+                name: "Robotics"
+            });
+            firebaseRef.child("Skills").child("222").push({
+                name: "Interior Designing"
+            });
+        }
+
+        function chkBoxSubmit() {
+            var selChkBox = document.querySelectorAll("input[type=checkbox]:checked");
+            console.log(selChkBox);
+            for (var c of selChkBox) {
+
+                firebase.database().ref("Skills/" + "111").push({
+                    name: c.value
+                });
+                firebaseRef.child("Skills").child("222").push({
+                    name: c.value
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
